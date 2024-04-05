@@ -28,13 +28,13 @@
         smoothThresholdColor="#FFF"
       >
         <!-- Define the cards -->
-        <a-entity id="card1" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: red" position="0 0 -2">
+        <a-entity id="card1" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: red" position="0 0 -2" visible="false">
           <a-text value="Red" align="center" color="white" position="0 0 0.06"></a-text>
         </a-entity>
-        <a-entity id="card2" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: blue" position="0 0 -2">
+        <a-entity id="card2" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: blue" position="0 0 -2" visible="false">
           <a-text value="Blue" align="center" color="white" position="0 0 0.06"></a-text>
         </a-entity>
-        <a-entity id="card3" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: purple" position="0 0 -2">
+        <a-entity id="card3" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: purple" position="0 0 -2" visible="false">
           <a-text value="Purple" align="center" color="white" position="0 0 0.06"></a-text>
         </a-entity>
       </a-nft>
@@ -56,12 +56,17 @@
         var randomCardId = getRandomCard();
         var randomCard = document.getElementById(randomCardId);
         if (randomCard) {
+          // Hide all cards first
+          document.querySelectorAll('[id^="card"]').forEach(card => {
+            card.setAttribute("visible", false);
+          });
+          // Then display the random card
           randomCard.setAttribute("visible", true);
         }
       }
   
-      // Event listener for marker found
-      document.querySelector('a-nft').addEventListener('markerFound', function (event) {
+      // Event listener for marker lost
+      document.querySelector('a-nft').addEventListener('markerLost', function (event) {
         displayRandomCard();
       });
     </script>
