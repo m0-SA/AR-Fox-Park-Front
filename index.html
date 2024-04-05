@@ -48,11 +48,14 @@
         smoothThreshold="5"
       >
         <!-- Define the cards -->
-        <a-entity id="card1" geometry="primitive: plane; width: 1.5; height: 1.5; depth: 0.05;" material="color: red" position="0 0 0" rotation="0 0 0" visible="false">
+        <a-entity id="card1" geometry="primitive: plane; width: 1.5; height: 1.5;" material="color: red" position="0 0 0" rotation="0 0 0" visible="false" look-at="[camera]">
+          <a-text value="Red" align="center" color="white" position="0 0 0.1"></a-text>
         </a-entity>
-        <a-entity id="card2" geometry="primitive: plane; width: 1.5; height: 1.5; depth: 0.05;" material="color: blue" position="0 0 0" rotation="90 0  0" visible="false">
+        <a-entity id="card2" geometry="primitive: plane; width: 1.5; height: 1.5;" material="color: blue" position="0 0 0" rotation="0 0 0" visible="false" look-at="[camera]">
+          <a-text value="Blue" align="center" color="white" position="0 0 0.1"></a-text>
         </a-entity>
-        <a-entity id="card3" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: purple" position="0 0 0" rotation="0 0 90" visible="false">
+        <a-entity id="card3" geometry="primitive: plane; width: 1.5; height: 1.5;" material="color: purple" position="0 0 0" rotation="0 0 0" visible="false" look-at="[camera]">
+          <a-text value="Purple" align="center" color="white" position="0 0 0.1"></a-text>
         </a-entity>
       </a-nft>
   
