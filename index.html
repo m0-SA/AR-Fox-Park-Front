@@ -10,18 +10,21 @@
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="trackingMethod: best;">
-      <!-- Define the image as a tracking target -->
-      <a-assets>
-        <img id="image" src="libraryImg.jpg">
-      </a-assets>
-  
-      <!-- Define the image as a tracking target -->
-      <a-marker type="image" src="#image" id="imageMarker">
+      <!-- Define the NFT marker -->
+      <a-nft
+        type="nft"
+        url="markers/librarycards"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+        smoothThresholdColor="#FFF"
+      >
         <!-- Define the cards -->
         <a-entity id="card1" geometry="primitive: box; width: 1; height: 1; depth: 0.05;" material="color: red" position="0 0.5 0" visible="false"></a-entity>
         <a-entity id="card2" geometry="primitive: box; width: 1; height: 1; depth: 0.05;" material="color: green" position="0 0.5 0" visible="false"></a-entity>
         <a-entity id="card3" geometry="primitive: box; width: 1; height: 1; depth: 0.05;" material="color: blue" position="0 0.5 0" visible="false"></a-entity>
-      </a-marker>
+      </a-nft>
   
       <!-- Define the camera -->
       <a-entity camera></a-entity>
@@ -45,7 +48,7 @@
       }
   
       // Event listener for marker found
-      document.getElementById('imageMarker').addEventListener('markerFound', function (event) {
+      document.querySelector('a-nft').addEventListener('markerFound', function (event) {
         displayRandomCard();
       });
     </script>
