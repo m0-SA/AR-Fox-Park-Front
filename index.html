@@ -8,36 +8,19 @@
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   </head>
-  <  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Camera -->
-      <a-marker-camera preset="hiro"></a-marker-camera>
-
-      <!-- Basketball hoop -->
-      <a-box position="0 0 -5" width="2" height="2" depth="0.1" color="orange"></a-box>
-      <a-cylinder position="0 0 -4" radius="0.1" height="2" color="black"></a-cylinder>
-
-      <!-- Ball -->
-      <a-sphere id="ball" radius="0.1" position="0 0.5 -4" color="red" dynamic-body></a-sphere>
-
-      <!-- Floor -->
-      <a-plane rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="20 20 20"
+        gps-entity-place="latitude: 52.64860323949289; longitude: -1.117111120251318;"
+      ></a-text>
+      <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
-
-    <script>
-      // Function to throw the ball when screen is clicked
-      function throwBall(event) {
-        var ball = document.getElementById('ball');
-        var camera = document.querySelector('[camera]');
-        var direction = new THREE.Vector3();
-        camera.getWorldDirection(direction);
-        ball.setAttribute('position', camera.getAttribute('position'));
-        ball.setAttribute('dynamic-body', 'true');
-        ball.setAttribute('velocity', direction.multiplyScalar(-10));
-      }
-
-      // Event listener for click
-      window.addEventListener('click', throwBall);
-    </script>
   </body>
 </html>
