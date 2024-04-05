@@ -9,7 +9,14 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="trackingMethod: best;">
+    <div class="arjs-loader">
+      <div>Loading, please wait...</div>
+    </div>
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
       <!-- Define the NFT marker -->
       <a-nft
         type="nft"
@@ -21,13 +28,13 @@
         smoothThresholdColor="#FFF"
       >
         <!-- Define the cards -->
-        <a-entity id="card1" geometry="primitive: box; width: 100; height: 100; depth: 0.05;" material="color: red" position="-1.5 0.5 -2">
+        <a-entity id="card1" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: red" position="0 0 -2">
           <a-text value="Red" align="center" color="white" position="0 0 0.06"></a-text>
         </a-entity>
-        <a-entity id="card2" geometry="primitive: box; width: 100; height: 100; depth: 0.05;" material="color: blue" position="0 0.5 -2">
+        <a-entity id="card2" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: blue" position="0 0 -2">
           <a-text value="Blue" align="center" color="white" position="0 0 0.06"></a-text>
         </a-entity>
-        <a-entity id="card3" geometry="primitive: box; width: 100; height: 100; depth: 0.05;" material="color: purple" position="1.5 0.5 -2">
+        <a-entity id="card3" geometry="primitive: plane; width: 100; height: 100; depth: 0.05;" material="color: purple" position="0 0 -2">
           <a-text value="Purple" align="center" color="white" position="0 0 0.06"></a-text>
         </a-entity>
       </a-nft>
