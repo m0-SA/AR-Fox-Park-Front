@@ -50,14 +50,14 @@
       >
         <!-- Define the cards -->
         <a-entity  id="card1"  geometry="primitive: plane; width: 250; height: 400;"  material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
-          <a-text value="You just remembered you took out a book 4 years ago. I wonder where it went... Lose 4 action points." align = "center" color="black; opacity:1" scale = " 100 100 100"></a-text>
+          <a-text value="You just remembered you took out a book 4 years ago. I wonder where it went... \n Lose 4 action points." align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
         </a-entity>
-        <!--<a-entity id="card2" geometry="primitive: plane; width: 1; height: 2;" scale=" 25 25 0" material="color: blue; opacity: 0.8"  visible="false" rotation= " 0 0 45">
-          <a-text value="Blue" align="center" color="white" position="0 0 0.1" rotation= " 0 0 0 "></a-text>
+        <a-entity id="card2" geometry="primitive: plane; width: 250; height: 400;"  material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
+          <a-text value="Blue" align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
         </a-entity>
-        <a-entity id="card3" geometry="primitive: plane; width: 1; height: 2;" scale=" 25 25 0" material="color: purple; opacity: 0.8"  visible="false" position=" 180 0 45" >
-          <a-text value="Purple" align="center" color="white" position="0 0 0.1" rotation= " 0 0 0 "></a-text>
-        </a-entity>-->
+        <a-entity id="card3" geometry="primitive: plane; width: 250; height: 400;"  material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
+          <a-text value="Purple" align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
+        </a-entity>
       </a-nft>
   
       <!-- Define the camera -->
@@ -69,7 +69,7 @@
   
       // Function to get a random card entity
       function getRandomCard() {
-        var cards = ["card1"];
+        var cards = ["card1, card2, card3"];
         var randomIndex = Math.floor(Math.random() * cards.length);
         return cards[randomIndex];
       }
