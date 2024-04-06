@@ -1,72 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>M0-SA AR Game</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-  </head>
-  <style>
-    .arjs-loader {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .arjs-loader div {
-      text-align: center;
-      font-size: 1.25em;
-      color: white;
-    }
-  </style>
 
-  <body style="margin: 0; overflow: hidden;">
-    <div class="arjs-loader">
-      <div>Loading, please wait...</div>
-    </div>
-    <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
-      embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
-      
-      <!-- Define the NFT marker -->
-      <a-nft
-        type="nft"
-        url="markers/librarycards"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-      >
-       <!-- Define the cards -->
-       <a-entity id="card1" geometry="primitive: plane; width: 100; height: 200;" material="color: white; opacity: 0.5"  visible="false" look-at="[camera]" position= "100 100 -180">
-        <a-text value="You just remembered you took out a book 4 years ago. I wonder where it went... \n Lose 4 action points." align = "center" color="black; opacity:1" scale="25 25 5" rotation="0 0 -90"></a-text>
-      </a-entity>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>M0-SA AR Game</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
-      <a-entity id="card2" geometry="primitive: plane; width: 100; height: 200;" material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "0 0 0">
-        <a-text value="You enter the library in hopes of finding a book on monsters. Unfortunately, you spend too long before a monster catches up to you. \n Go back to previous enemy. " align = "center" color="black; opacity:1" scale="25 25 5" rotation="0 0 -90"></a-text>
-      </a-entity>
-      
-      <a-entity id="card3" geometry="primitive: plane; width: 100; height: 200;" material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
-        <a-text value="You enter the library in hopes of finding a book on monsters. You're in luck, you find 'Monster Slaying 101'! \n Gain 10 action points." align = "center" color="black; opacity:1" scale="25 25 5" rotation="0 0 -90"></a-text>
-      </a-entity>
-    </a-nft>
+</head>
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    <!-- Define the camera -->
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin: 0; overflow: hidden;">
+
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+
+  <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+
+    <!-- Landmark Cards - Natural Feature Tracking Markers-->
+    <div id="cards"></div>
+
+
+
     <a-entity camera></a-entity>
   </a-scene>
 
   <script>
+    $(document).ready(function () {
+
+      $('#cards').load("cards.html");
+
+    });
     var firstTime = true; // Flag to track if it's the first time marker is found
 
     // Function to get a random card entity
@@ -75,33 +64,34 @@
       var randomIndex = Math.floor(Math.random() * cards.length);
       return cards[randomIndex];
     }
-  
-      // Function to display a random card
-      function displayRandomCard() {
-        var randomCardId = getRandomCard();
-        var randomCard = document.getElementById(randomCardId);
-        if (randomCard) {
-          // Hide all cards first
-          document.querySelectorAll('[id^="card"]').forEach(card => {
-            card.setAttribute("visible", false);
-          });
-          // Then display the random card
-          randomCard.setAttribute("visible", true);
-        }
+
+    // Function to display a random card
+    function displayRandomCard() {
+      var randomCardId = getRandomCard();
+      var randomCard = document.getElementById(randomCardId);
+      if (randomCard) {
+        // Hide all cards first
+        document.querySelectorAll('[id^="card"]').forEach(card => {
+          card.setAttribute("visible", false);
+        });
+        // Then display the random card
+        randomCard.setAttribute("visible", true);
       }
-  
-      // Event listener for marker found
-      document.querySelector('a-nft').addEventListener('markerFound', function (event) {
-        if (firstTime) {
-          displayRandomCard();
-          firstTime = false; // Update flag after first time
-        }
-      });
-  
-      // Event listener for marker lost
-      document.querySelector('a-nft').addEventListener('markerLost', function (event) {
-        firstTime = true; // Reset flag when marker is lost
-      });
-    </script>
-  </body>
+    }
+
+    // Event listener for marker found
+    document.querySelector('a-nft').addEventListener('markerFound', function (event) {
+      if (firstTime) {
+        displayRandomCard();
+        firstTime = false; // Update flag after first time
+      }
+    });
+
+    // Event listener for marker lost
+    document.querySelector('a-nft').addEventListener('markerLost', function (event) {
+      firstTime = true; // Reset flag when marker is lost
+    });
+  </script>
+</body>
+
 </html>
