@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Location-based AR.js demo</title>
+    <title>M0-SA AR Game</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
@@ -48,31 +48,33 @@
         smoothTolerance=".01"
         smoothThreshold="5"
       >
-        <!-- Define the cards -->
-        <a-entity  id="card1"  geometry="primitive: plane; width: 250; height: 400;"  material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
-          <a-text value="You just remembered you took out a book 4 years ago. I wonder where it went... \n Lose 4 action points." align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
-        </a-entity>
-        <a-entity id="card2" geometry="primitive: plane; width: 250; height: 400;"  material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
-          <a-text value="Blue" align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
-        </a-entity>
-        <a-entity id="card3" geometry="primitive: plane; width: 250; height: 400;"  material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
-          <a-text value="Purple" align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
-        </a-entity>
-      </a-nft>
-  
-      <!-- Define the camera -->
-      <a-entity camera></a-entity>
-    </a-scene>
-  
-    <script>
-      var firstTime = true; // Flag to track if it's the first time marker is found
-  
-      // Function to get a random card entity
-      function getRandomCard() {
-        var cards = ["card1, card2, card3"];
-        var randomIndex = Math.floor(Math.random() * cards.length);
-        return cards[randomIndex];
-      }
+       <!-- Define the cards -->
+       <a-entity id="card1" geometry="primitive: plane; width: 250; height: 400;" material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
+        <a-text value="You just remembered you took out a book 4 years ago. I wonder where it went... \n Lose 4 action points." align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
+      </a-entity>
+
+      <a-entity id="card2" geometry="primitive: plane; width: 250; height: 400;" material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
+        <a-text value="Blue" align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
+      </a-entity>
+      
+      <a-entity id="card3" geometry="primitive: plane; width: 250; height: 400;" material="color: white; opacity: 0.5"  visible="false" rotation= "270 0 90" position= "100 -10 -180">
+        <a-text value="Purple" align = "center" color="black; opacity:1" scale="80 80 5" rotation="0 0 -90"></a-text>
+      </a-entity>
+    </a-nft>
+
+    <!-- Define the camera -->
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    var firstTime = true; // Flag to track if it's the first time marker is found
+
+    // Function to get a random card entity
+    function getRandomCard() {
+      var cards = ["card1", "card2", "card3"];
+      var randomIndex = Math.floor(Math.random() * cards.length);
+      return cards[randomIndex];
+    }
   
       // Function to display a random card
       function displayRandomCard() {
