@@ -2,7 +2,7 @@ var imageFound = true; // Check if an NFT image is found by the camera
 
 // Picks a random card
 function getRandomCard() {
-    var cards = ["card1"];
+    var cards = ["card1", "card2", "card3"];
     var randomNo = Math.floor(Math.random() * cards.length);
     return cards[randomNo];
 }
