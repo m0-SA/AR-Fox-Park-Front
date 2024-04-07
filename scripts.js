@@ -12,11 +12,6 @@ function displayRandomCard() {
     var randomCardId = getRandomCard();
     var randomCard = document.getElementById(randomCardId);
     if (randomCard) {
-        // Hide all cards first
-        document.querySelectorAll('[id^="card"]').forEach(card => {
-            card.setAttribute("visible", false);
-        });
-        // Then display the random card
         randomCard.setAttribute("visible", true);
     }
 }
@@ -31,5 +26,8 @@ document.querySelector('a-nft').addEventListener('markerFound', function (event)
 
 // Event listener for marker lost
 document.querySelector('a-nft').addEventListener('markerLost', function (event) {
+    document.querySelectorAll('[id^="card"]').forEach(card => {
+        card.setAttribute("visible", false);
+    });
     imageFound = true; // Reset flag when marker is lost
 });
