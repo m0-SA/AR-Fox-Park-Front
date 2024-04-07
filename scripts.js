@@ -1,15 +1,15 @@
 var imageFound = true; // Check if an NFT image is found by the camera
 
 // Picks a random card
-function getRandomCard() {
-    var cards = ["card1", "card2", "card3"];
+function getRandomCard(nftID) {
+    var cards = [nftID+"card1",nftID+"card2",nftID+"card3"];
     var randomNo = Math.floor(Math.random() * cards.length);
     return cards[randomNo];
 }
 
-// Function to display a random card
-function displayRandomCard() {
-    var randomCardId = getRandomCard();
+// Sets a random card as visible
+function displayRandomCard(nftID) {
+    var randomCardId = getRandomCard(nftID);
     var randomCard = document.getElementById(randomCardId);
     if (randomCard) {
         randomCard.setAttribute("visible", true);
@@ -18,16 +18,22 @@ function displayRandomCard() {
 
 // Event listener for marker found
 document.querySelector('a-nft').addEventListener('markerFound', function (event) {
+    var nftID = $(this).attr('id');
     if (imageFound) {
-        displayRandomCard();
+        displayRandomCard(nftID);
         imageFound = false; // Update flag after first time
     }
+    
+    
 });
 
 // Event listener for marker lost
 document.querySelector('a-nft').addEventListener('markerLost', function (event) {
-    document.querySelectorAll('[id^="card"]').forEach(card => {
-        card.setAttribute("visible", false);
-    });
+    var nftID = $(this).attr('id');
+    $('a-text[id^="'+nftID+'"]').attr("visible", false);
+
     imageFound = true; // Reset flag when marker is lost
 });
+
+
+    
