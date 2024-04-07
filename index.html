@@ -7,12 +7,11 @@
   <title>M0-SA AR Game</title>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="cards.js"></script>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-
 </head>
+
 <style>
   .arjs-loader {
     height: 100%;
@@ -41,57 +40,41 @@
   </div>
 
   <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;" id="scene">
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
 
-    
+    <a-nft type="nft" url="markers/librarycards" smooth="true" smoothCount="10" smoothTolerance=".01"
+      smoothThreshold="5">
+      
+      <a-entity id="card1" geometry="primitive: plane; width: 100; height: 200;" material="color: white; opacity: 0.5"
+        visible="false" look-at="[camera]" position="100 -10 -180">
+        <a-text
+          value="You just remembered you took out a book 4 years ago. I wonder where it went... \n Lose 4 action points."
+          align="center" color="black; opacity:1" scale="25 25 5" rotation="0 0 -90"></a-text>
+      </a-entity>
+
+      <!--<a-entity id="card2" geometry="primitive: plane; width: 100; height: 200;" material="color: white; opacity: 0.5"
+        visible="false" rotation="270 0 90" position="100 -10 -180">
+        <a-text
+          value="You enter the library in hopes of finding a book on monsters. Unfortunately, you spend too long before a monster catches up to you. \n Go back to previous enemy. "
+          align="center" color="black; opacity:1" scale="25 25 5" rotation="0 0 -90"></a-text>
+      </a-entity>
+
+      <a-entity id="card3" geometry="primitive: plane; width: 100; height: 200;" material="color: white; opacity: 0.5"
+        visible="false" rotation="270 0 90" position="100 -10 -180">
+        <a-text
+          value="You enter the library in hopes of finding a book on monsters. You're in luck, you find 'Monster Slaying 101'! \n Gain 10 action points."
+          align="center" color="black; opacity:1" scale="25 25 5" rotation="0 0 -90"></a-text>
+      </a-entity>
+    </a-nft>
+
+
+    <!-- Health Centre Cards  -->
+
+
 
     <a-entity camera></a-entity>
   </a-scene>
-
-  <script>
-
-    $(document).ready(function () {
-
-      $('#scene').load("cards.html");
-
-    });
-
-    var imageFound = true; // Checks if the NFT image is found by the camera
-
-    // Function to get a random card entity
-    function getRandomCard() {
-      var cards = ["card1", "card2", "card3"];
-      var randomIndex = Math.floor(Math.random() * cards.length);
-      return cards[randomIndex];
-    }
-
-    // Function to display a random card
-    function displayRandomCard() {
-      var randomCardId = getRandomCard();
-      var randomCard = document.getElementById(randomCardId);
-      if (randomCard) {
-        // Hide all cards first
-        document.querySelectorAll('[id^="card"]').forEach(card => {
-          card.setAttribute("visible", false);
-        });
-        // Then display the random card
-        randomCard.setAttribute("visible", true);
-      }
-    }
-
-    // Event listener for marker found
-    document.querySelector('a-nft').addEventListener('markerFound', function (event) {
-      if (firstTime) {
-        displayRandomCard();
-        firstTime = false; // Update flag after first time
-      }
-    });
-
-    // Event listener for marker lost
-    document.querySelector('a-nft').addEventListener('markerLost', function (event) {
-      firstTime = true; // Reset flag when marker is lost
-    });
-  </script>
+  <script type="text/javascript" src="scripts.js"></script>
 </body>
 
 </html>
