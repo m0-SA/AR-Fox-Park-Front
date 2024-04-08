@@ -1,4 +1,4 @@
-var imageFound = true; // Check if an NFT image is found by the camera
+var imageFound = false; // Check if an NFT image is found by the camera
 
 // Picks a random card
 function getRandomCard(nftID) {
@@ -16,23 +16,22 @@ function displayRandomCard(nftID) {
     }
 }
 
-// Event listener for marker found
+// When marker is found, grabs a random card from the specified marker group.
 document.querySelector('a-nft').addEventListener('markerFound', function (event) {
     var nftID = $(this).attr('id');
     if (imageFound) {
         displayRandomCard(nftID);
-        imageFound = false; // Update flag after first time
+        imageFound = true; 
     }
     
     
 });
 
-// Event listener for marker lost
+// When marker is lost, resets all visible attributes and image found variable.
 document.querySelector('a-nft').addEventListener('markerLost', function (event) {
     var nftID = $(this).attr('id');
     $('a-text[id^="'+nftID+'"]').attr("visible", false);
-
-    imageFound = true; // Reset flag when marker is lost
+    imageFound = false; 
 });
 
 
