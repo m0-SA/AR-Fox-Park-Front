@@ -10,6 +10,7 @@ function getRandomCard(nftID) {
 // Sets a random card as visible
 function displayRandomCard(nftID) {
     var randomCardId = getRandomCard(nftID);
+    console.log(randomCardId);
     var randomCard = document.getElementById(randomCardId);
     if (randomCard) {
         randomCard.setAttribute("visible", true);
@@ -17,9 +18,10 @@ function displayRandomCard(nftID) {
 }
 
 // When marker is found, grabs a random card from the specified marker group.
-document.querySelector('a-nft').addEventListener('markerFound', function (event) {
+$('a-nft').on('markerFound', function () {
     var nftID = $(this).attr('id');
-    if (imageFound) {
+    if (!imageFound) {
+        
         displayRandomCard(nftID);
         imageFound = true; 
     }
@@ -28,7 +30,7 @@ document.querySelector('a-nft').addEventListener('markerFound', function (event)
 });
 
 // When marker is lost, resets all visible attributes and image found variable.
-document.querySelector('a-nft').addEventListener('markerLost', function (event) {
+$('a-nft').on('markerLost', function () {
     var nftID = $(this).attr('id');
     $('a-text[id^="'+nftID+'"]').attr("visible", false);
     imageFound = false; 
