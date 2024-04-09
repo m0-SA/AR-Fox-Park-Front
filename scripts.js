@@ -20,7 +20,6 @@ function displayRandomCard(nftID) {
 $('a-nft').on('markerFound', function () {
     var nftID = $(this).attr('id');
     if (!imageFound) {
-        
         displayRandomCard(nftID);
         imageFound = true; 
     }
