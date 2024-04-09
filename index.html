@@ -40,7 +40,9 @@
   </div>
 
   <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+    arjs="trackingMethod: best; videoTexture:true, sourceType: webcam;debugUIEnabled: false;">
+
+    <a-entity gps-new-camera></a-entity>
 
     <!--
       Cards
@@ -143,12 +145,12 @@
       <a-asset-item id="wolf" src="scene.gltf"></a-asset-item>
     </a-assets>
 
-    <a-entity id="wolf1" gltf-model="#wolf" scale="25 25 25" look-at="[gps-camera]"
-      gps-entity-place="52.648549 ; -1.116863 ;">
+    <a-entity id="wolf1" gltf-model="#wolf" scale="25 25 25" look-at="[gps-new-camera]"
+    gps-new-entity-place="latitude: 52.64869128263228; longitude: -1.1170454637285219;" position="0 -3 0">
     </a-entity>
 
 
-    <a-entity camera gps-camera rotation-reader></a-entity>
+    
   </a-scene>
   <script type="text/javascript" src="scripts.js"></script>
 </body>

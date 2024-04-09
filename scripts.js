@@ -10,7 +10,6 @@ function getRandomCard(nftID) {
 // Sets a random card as visible
 function displayRandomCard(nftID) {
     var randomCardId = getRandomCard(nftID);
-    console.log(randomCardId);
     var randomCard = document.getElementById(randomCardId);
     if (randomCard) {
         randomCard.setAttribute("visible", true);
