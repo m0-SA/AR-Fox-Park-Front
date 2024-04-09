@@ -12,7 +12,7 @@
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
 
-<!--<style>
+<style>
   .arjs-loader {
     height: 100%;
     width: 100%;
@@ -31,7 +31,7 @@
     font-size: 1.25em;
     color: white;
   }
-</style>-->
+</style>
 
 <body style="margin: 0; overflow: hidden;">
 
@@ -41,8 +41,8 @@
 
   <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
-
-
+    
+    
 
     <!--
       Cards
@@ -138,21 +138,23 @@
       </a-entity>
     </a-nft>
 
-    <!--
+<!--
       Enemy Locations
     -->
     <a-assets>
       <a-asset-item id="wolf" src="scene.gltf"></a-asset-item>
     </a-assets>
 
-    <a-entity id="wolf1" gltf-model="#wolf" scale="10 10 10" rotation="0 90 0" look-at="[gps-camera]"
-      gps-entity-place="latitude: 52.64860300165163; longitude: -1.1171279416506334;" >
+    <a-entity id="wolf1" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+      gps-entity-place="latitude: 52.6486802983726; longitude: -1.1170199825699372">
     </a-entity>
 
-    <a-entity gps-camera rotation-reader look-controls-enabled='false' arjs-device-orientation-controls='smoothingFactor: 0.1' gps-camera='gpsMinDistance: 5'></a-entity>
+    <a-camera gps-camera rotation-reader></a-camera>
+    
 
   </a-scene>
   <script type="text/javascript" src="scripts.js"></script>
 </body>
+
 
 </html>
