@@ -42,7 +42,17 @@
   <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
     
-    
+    <!--
+      Enemy Locations
+    -->
+    <a-assets>
+      <a-asset-item id="wolf" src="scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-entity id="wolf1" gltf-model="#wolf" scale="10 10 10" rotation="0 90 0" look-at="[gps-camera]"
+      gps-entity-place="latitude: 52.64868395979282; longitude: -1.1170132772223331;">
+    </a-entity>
+
 
     <!--
       Cards
@@ -137,8 +147,10 @@
           align="center" color="red" scale="25 25 5" rotation="0 0 -90" visible="false"></a-text>
       </a-entity>
     </a-nft>
-    <a-camera camera></a-camera>
 
+
+<a-entity gps-camera rotation-reader></a-entity>
+    
 
   </a-scene>
   <script type="text/javascript" src="scripts.js"></script>
