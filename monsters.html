@@ -24,7 +24,23 @@
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
   </body>
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var entity = document.querySelector('[gps-entity-place]');
+        if (entity) {
+            var latitude = entity.getAttribute('latitude');
+            var longitude = entity.getAttribute('longitude');
+            if (latitude !== null && longitude !== null) {
+                console.log('Latitude:', latitude);
+                console.log('Longitude:', longitude);
+            } else {
+                console.error('Latitude or longitude attribute is missing.');
+            }
+        } else {
+            console.error('No element with gps-entity-place attribute found.');
+        }
+    });
+    </script>
 </html>
 <!--<a-assets>
         <a-asset-item id="wolf" src="scene.gltf"></a-asset-item>
