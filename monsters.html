@@ -1,46 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Location-based AR.js demo</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-  </head>
+    <script>
+        AFRAME.registerComponent('clicker', {
+            init: function () {
+                this.el.addEventListener('click', e => {
+                    var diceRoll = Math.floor(Math.random() * 12) + 1;
+                    if (diceRoll >= 8) {
+                        alert('You rolled a ' + diceRoll + '.\n Monster defeated!');
+                    }
+                    else if (diceRoll === 7) {
+                        alert('You rolled a ' + diceRoll + '.\n Draw!');
+                    }
+                    else if (diceRoll <= 6) {
+                        alert('You rolled a ' + diceRoll + '.\n Lose an action point!');
+                    }
 
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene
-      vr-mode-ui="enabled: false"
-      embedded
-      arjs="sourceType: webcam; debugUIEnabled: false;"
-    >
-      <a-text
-        value="This content will always face you."
-        look-at="[gps-camera]"
-        scale="50 50 50"
-        gps-entity-place="latitude: 52.649220; longitude: -1.119283"
-      ></a-text>
-      <a-camera gps-camera rotation-reader> </a-camera>
-    </a-scene>
-  </body>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var entity = document.querySelector('[gps-entity-place]');
-        if (entity) {
-            var latitude = entity.getAttribute('latitude');
-            var longitude = entity.getAttribute('longitude');
-            if (latitude !== null && longitude !== null) {
-                console.log('Latitude:', latitude);
-                console.log('Longitude:', longitude);
-            } else {
-                console.error('Latitude or longitude attribute is missing.');
+                });
             }
-        } else {
-            console.error('No element with gps-entity-place attribute found.');
-        }
-    });
+        });
     </script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-assets>
+            <a-asset-item id="wolf" src="scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-entity id="wolf1" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.649565; longitude: -1.119550"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf2" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.649581; longitude: -1.119223"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf3" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.649994; longitude: -1.119684"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf4" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.650323; longitude: -1.120092"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf5" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.649682; longitude: -1.121133"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf6" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.649148; longitude: -1.120613"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf7" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.648803; longitude: -1.120301"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-entity id="wolf8" gltf-model="#wolf" scale="500 500 500" rotation="0 90 0" look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.648621; longitude: -1.120226"></a-entity>
+        <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+</body>
+</script>
+
 </html>
 <!--<a-assets>
         <a-asset-item id="wolf" src="scene.gltf"></a-asset-item>
